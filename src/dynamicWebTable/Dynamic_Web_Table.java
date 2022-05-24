@@ -26,16 +26,18 @@ public class Dynamic_Web_Table {
 		List<WebElement> totalColumns = driver.findElements(By.xpath("//table[@id ='countries']//tbody//tr//h3"));
 		System.out.println("Total Columns in the table are : " +totalColumns.size());
 
-		String expectedCurrency = "Euro";
+		String expectedCurrency = "Guyanese Dollar";
 
 		for(int i=1;i<=totalRows.size();i++) {
 			for(int j=1;j<=totalColumns.size(); j++) {
-				if(driver.findElement(By.xpath("//table[@id ='countries']//tbody//tr["+i+"]//td["+j+"]")).getText().equalsIgnoreCase(expectedCurrency)) {
-					System.out.println(driver.findElement(By.xpath("//table[@id ='countries']//tbody//tr["+i+"]//td["+j+"]")).getText());
+				WebElement tablePath = driver.findElement(By.xpath("//table[@id ='countries']//tbody//tr["+i+"]//td["+j+"]"));
+				if(tablePath.getText().equalsIgnoreCase(expectedCurrency)) {
+					System.out.println(tablePath.getText());
 					break;
 				}	
 			}
 		}
+
 		driver.quit();
 	}
 
